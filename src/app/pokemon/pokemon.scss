@@ -1,0 +1,14 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.pokemon {
+    &__container {
+        @include page-layout($indent__xl, auto);
+        text-align: center;
+
+        &--button{
+            @include button-style($color-minsk);
+
+        }
+    }
+}

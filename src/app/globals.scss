@@ -1,0 +1,98 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+* {
+  box-sizing: border-box;
+}
+
+.header {
+  @include flexrow;
+
+  padding: $indent__m;
+  gap: $indent__base;
+
+  img {
+    height: auto;
+    width: 100%;
+  }
+  &__icon,
+  &__avatar {
+    display: none;
+    @include responsive-tablet{
+      width: 150px;
+      display: block;
+    }
+ 
+  }
+  &__logo{
+    flex-grow: 1;
+    padding: 0 $indent__xxl;
+  }
+}
+
+.menu {
+   @include flexrow;
+   @include page-layout($indent__xl, auto);
+
+   background-color:$background-primary ;
+   padding: 0 $indent__l;
+
+   &__item {
+     
+
+     &--home {
+      @include menu-item;
+     }
+
+     &--pokemon {
+      @include menu-item($color-torch-red);
+     }
+
+     &--types {
+      @include menu-item($color-bright-sun);
+
+     }
+
+     &--about {
+      @include menu-item($color-malibu);
+     }
+   }
+}
+
+.home-grid {
+  @include responsive-mobile{
+      display: grid;
+      gap: $indent__s;
+      grid-template: repeat(3, 1fr) / repeat (3, 1fr);
+      grid-template-areas: ". . ."
+                           "main main ."
+                           "main main .";
+  }
+
+  &__article {
+   margin-bottom: $indent__base;
+
+   @include responsive-mobile {
+    margin-bottom: 0;
+   }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    &.primary{
+      @include home-grid-article($color-bright-sun)
+    }
+    &.secondary {
+        @include home-grid-article($color-minsk)
+    }    
+    &.tertiary {
+        @include home-grid-article($color-torch-red)
+    }    
+    &.featured {
+      grid-area: main;
+           @include home-grid-article($color-torch-red)
+    }
+  
+    //  @include home-grid-article;
+  }
+}
